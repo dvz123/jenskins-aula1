@@ -1,18 +1,40 @@
 pipeline {
     agent any
-
     stages {
-        stage('Checkout') {
+        stage('Preparação') {
             steps {
-                checkout scm
-                echo '✅ Código baixado do GitHub'
+                echo '🔧 Preparando ambiente...'
+                sleep 2
             }
         }
-
-        stage('Install') {
+        stage('Testes') {
             steps {
-                echo '📦 Instalando dependências...'
-                // sh 'npm install' // descomente se tiver Node.js
-                echo '✅ Dependências instaladas'
+                echo '🧪 Executando testes...'
+                sleep 3
+                echo '✅ Todos os testes passaram!'
             }
         }
+        stage('Build') {
+            steps {
+                echo '📦 Fazendo build da aplicação...'
+                sleep 2
+                echo '✅ Build concluído!'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo '🚀 Fazendo deploy...'
+                sleep 2
+                echo '✅ Deploy realizado com sucesso!'
+            }
+        }
+    }
+    post {
+        success {
+            echo '🎉 Pipeline executado com sucesso!'
+        }
+        failure {
+            echo '❌ Pipeline falhou!'
+        }
+    }
+}
