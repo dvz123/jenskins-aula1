@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+                echo '✅ Código baixado do GitHub'
+            }
+        }
+
+        stage('Install') {
+            steps {
+                echo '📦 Instalando dependências...'
+                // sh 'npm install' // descomente se tiver Node.js
+                echo '✅ Dependências instaladas'
+            }
+        }
